@@ -94,34 +94,30 @@ void setup() {
 
 
   server.on("/display", HTTP_POST, 
-    []() {
-      Serial.println("Sending response...");
-      server.send(200, "text/plain", "Image displayed");
-    }, 
-    []() {
-      HTTPUpload& upload = server.upload();
-      static size_t bytesReceived = 0;
-      
-      if (upload.status == UPLOAD_FILE_START) {
-        bytesReceived = 0;
-        Serial.println("Upload started");
-      } 
-      else if (upload.status == UPLOAD_FILE_WRITE) {
-        memcpy(imageBuffer + bytesReceived, upload.buf, upload.currentSize);
-        bytesReceived += upload.currentSize;
-      } 
-      else if (upload.status == UPLOAD_FILE_END) {
-        Serial.printf("Got %d bytes\n", bytesReceived);
-        if (bytesReceived == 192000) {
-          Serial.println("Displaying image...");
-          epd.EPD_7IN3F_Display(imageBuffer);
-          Serial.println("Done!");
-        } else {
-          Serial.printf("Wrong size! Expected 192000, got %d\n", bytesReceived);
-        }
+  []() {
+    // Send response IMMEDIATELY, before display updates
+    server.send(200, "text/plain", "Received");
+  }, 
+  []() {
+    HTTPUpload& upload = server.upload();
+    static size_t bytesReceived = 0;
+    
+    if (upload.status == UPLOAD_FILE_START) {
+      bytesReceived = 0;
+    } 
+    else if (upload.status == UPLOAD_FILE_WRITE) {
+      memcpy(imageBuffer + bytesReceived, upload.buf, upload.currentSize);
+      bytesReceived += upload.currentSize;
+    } 
+    else if (upload.status == UPLOAD_FILE_END) {
+      Serial.printf("Got %d bytes, updating display...\n", bytesReceived);
+      if (bytesReceived == 192000) {
+        epd.EPD_7IN3F_Display(imageBuffer);
+        Serial.println("Display updated!");
       }
     }
-  );
+  }
+);
   
   server.on("/testcolor", []() {
   if (server.hasArg("code")) {
