@@ -244,8 +244,8 @@ void Epd::EPD_7IN3F_Show7Block(void)
 {
     unsigned long i, j, k;
     unsigned char const Color_seven[8] = 
-    {EPD_7IN3F_BLACK, EPD_7IN3F_BLUE, EPD_7IN3F_GREEN, EPD_7IN3F_ORANGE,
-    EPD_7IN3F_RED, EPD_7IN3F_YELLOW, EPD_7IN3F_WHITE, EPD_7IN3F_ORANGE2};
+    {EPD_7IN3F_RED, EPD_7IN3F_GREEN, EPD_7IN3F_BLUE, EPD_7IN3F_YELLOW,
+    EPD_7IN3F_BLACK, EPD_7IN3F_WHITE, EPD_7IN3F_BLACK, EPD_7IN3F_WHITE};
 
     SendCommand(0x10);
     for(i=0; i<240; i++) {

@@ -62,7 +62,6 @@ Color Index
 #define EPD_7IN3F_RED     0x3	///	100
 #define EPD_7IN3F_YELLOW  0x2	///	101
 #define EPD_7IN3F_ORANGE  0x13	///	110
-#define EPD_7IN3F_ORANGE2 0x12	///	110
 #define EPD_7IN3F_CLEAN   0x7	///	111   unavailable  Afterimage
 
 
