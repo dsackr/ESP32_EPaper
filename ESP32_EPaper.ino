@@ -102,7 +102,7 @@ void setup() {
   <button onclick="location.href='/colors'">Show Color Test</button>
   <br><br>
   <h3>Upload Images</h3>
-  <p><a href="http://YOUR_PI_IP:5002" target="_blank">Go to Image Upload Page (Pi Zero)</a></p>
+  <p><a href="http://192.168.86.120:5000" target="_blank">Go to Image Upload Page (Pi Zero)</a></p>
 </body>
 </html>
 )rawliteral";
