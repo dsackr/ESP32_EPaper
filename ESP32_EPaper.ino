@@ -79,9 +79,9 @@ void setup() {
   }
   
   // Draw IP address info on display
-  drawString(50, 180, "E-Paper Display Ready", &Font24, EPD_7IN3F_BLACK);
-  drawString(50, 230, "Connect to:", &Font20, EPD_7IN3F_BLACK);
-  drawString(50, 270, ipAddress.c_str(), &Font24, EPD_7IN3F_BLUE);
+  drawString(150, 180, "E-Paper Display Ready", &Font24, EPD_7IN3F_BLACK);
+  drawString(150, 230, "Connect to:", &Font20, EPD_7IN3F_BLACK);
+  drawString(150, 270, ipAddress.c_str(), &Font24, EPD_7IN3F_BLACK);
   
   epd.EPD_7IN3F_Display(imageBuffer);
   Serial.println("IP displayed on screen");
@@ -169,7 +169,7 @@ void loop() {
   if (displayUpdatePending) {
     displayUpdatePending = false;
     Serial.println("Updating display...");
-    epd.EPD_7IN3F_Display(imageBuffer);
+    epd.EPD_7IN3F_Display(imageBuffer);  // Just display
     Serial.println("Done!");
   }
 }
